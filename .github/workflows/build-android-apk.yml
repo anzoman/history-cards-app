@@ -1,0 +1,45 @@
+name: Build and release Android apk artifact
+
+on: [push] 
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Use checkout
+        uses: actions/checkout@v1
+        
+      - name: Setup java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      
+      - name: Use flutter action
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '1.12.13+hotfix.5'
+          
+      - name: Run pub get
+        run: flutter pub get
+        working-directory: avtokampi
+      
+      - name: Build apk
+        run: flutter build apk --debug
+        working-directory: avtokampi
+      
+      - name: Prepare apk artifact for download
+        uses: actions/upload-artifact@v1
+        with:
+          name: apk-debug.apk
+          path: "avtokampi/build/app/outputs/apk/debug/app-debug.apk"
+      
+      - name: Create an APK prerelease
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "android-latest"
+          prerelease: true
+          title: "Android APK prerelease"
+          files: "avtokampi/build/app/outputs/apk/debug/app-debug.apk"

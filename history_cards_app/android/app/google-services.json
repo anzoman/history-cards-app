@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "856117862292",
+    "project_id": "history-cards-ee99d",
+    "storage_bucket": "history-cards-ee99d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856117862292:android:98a2230dc84d88bf677981",
+        "android_client_info": {
+          "package_name": "com.example.history_cards_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856117862292-adt0dhbdlmt7o0ojv0rigotmlriakfdj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALy2J4d9rpK7CebzKogL3tGOHVN_qFL0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856117862292-adt0dhbdlmt7o0ojv0rigotmlriakfdj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
