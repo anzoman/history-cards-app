@@ -32,7 +32,6 @@ dependencies:
   splashscreen: ^1.2.0
   flutter_email_sender: ^5.0.2
   progress_dialog: ^1.2.0
-  google_maps_flutter: ^2.1.1
   giffy_dialog: ^1.6.1
   flutter_slidable: ^1.1.0
   grouped_list: ^4.1.0

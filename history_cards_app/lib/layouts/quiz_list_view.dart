@@ -162,7 +162,10 @@ class QuizListView extends StatelessWidget {
                           children: <Widget>[
                             AspectRatio(
                               aspectRatio: 2,
-                              child: quizData.imagePath != null ? Image.network(quizData.imagePath) : Image.network("https://viralsolutions.net/wp-content/uploads/2019/06/shutterstock_749036344.jpg"),
+                              child: quizData.imagePath != null
+                                  ? Image.network(quizData.imagePath)
+                                  : Image.network(
+                                      "https://viralsolutions.net/wp-content/uploads/2019/06/shutterstock_749036344.jpg"),
                               // child: Image.memory(
                               //     quizData
                               //         .imagePath,

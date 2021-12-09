@@ -1,8 +1,7 @@
-
-import 'package:history_cards_app/layouts/stats_view.dart';
-import 'package:history_cards_app/layouts/profile_theme.dart';
-import 'package:history_cards_app/layouts/title_view.dart';
 import 'package:flutter/material.dart';
+import 'package:history_cards_app/layouts/profile_theme.dart';
+import 'package:history_cards_app/layouts/stats_view.dart';
+import 'package:history_cards_app/layouts/title_view.dart';
 
 class MyDiaryScreen extends StatefulWidget {
   const MyDiaryScreen({Key key, this.animationController}) : super(key: key);
@@ -13,8 +12,7 @@ class MyDiaryScreen extends StatefulWidget {
   _MyDiaryScreenState createState() => _MyDiaryScreenState();
 }
 
-class _MyDiaryScreenState extends State<MyDiaryScreen>
-    with TickerProviderStateMixin {
+class _MyDiaryScreenState extends State<MyDiaryScreen> with TickerProviderStateMixin {
   Animation<double> topBarAnimation;
 
   List<Widget> listViews = <Widget>[];
@@ -24,9 +22,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
   @override
   void initState() {
     topBarAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-        CurvedAnimation(
-            parent: widget.animationController,
-            curve: Interval(0, 0.5, curve: Curves.fastOutSlowIn)));
+        CurvedAnimation(parent: widget.animationController, curve: Interval(0, 0.5, curve: Curves.fastOutSlowIn)));
     addAllListData();
 
     scrollController.addListener(() {
@@ -36,8 +32,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
             topBarOpacity = 1.0;
           });
         }
-      } else if (scrollController.offset <= 24 &&
-          scrollController.offset >= 0) {
+      } else if (scrollController.offset <= 24 && scrollController.offset >= 0) {
         if (topBarOpacity != scrollController.offset / 24) {
           setState(() {
             topBarOpacity = scrollController.offset / 24;
@@ -61,23 +56,15 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
       TitleView(
         titleTxt: 'Statistika uporabnika',
         subTxt: 'Več',
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(
-            CurvedAnimation(
-                parent: widget.animationController,
-                curve:
-                Interval((1 / count) * 0, 1.0,
-                    curve: Curves.fastOutSlowIn))),
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController, curve: Interval((1 / count) * 0, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController,
       ),
     );
     listViews.add(
       MediterranesnDietView(
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(
-            CurvedAnimation(
-                parent: widget.animationController,
-                curve:
-                Interval((1 / count) * 1, 1.0,
-                    curve: Curves.fastOutSlowIn))),
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController, curve: Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController,
       ),
     );
@@ -85,12 +72,8 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
       TitleView(
         titleTxt: 'Oddani kvizi',
         subTxt: 'Več',
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(
-            CurvedAnimation(
-                parent: widget.animationController,
-                curve:
-                Interval((1 / count) * 2, 1.0,
-                    curve: Curves.fastOutSlowIn))),
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController, curve: Interval((1 / count) * 2, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController,
       ),
     );
@@ -112,10 +95,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
             getMainListViewUI(),
             getAppBarUI(),
             SizedBox(
-              height: MediaQuery
-                  .of(context)
-                  .padding
-                  .bottom,
+              height: MediaQuery.of(context).padding.bottom,
             )
           ],
         ),
@@ -133,16 +113,8 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
           return ListView.builder(
             controller: scrollController,
             padding: EdgeInsets.only(
-              top: AppBar().preferredSize.height +
-                  MediaQuery
-                      .of(context)
-                      .padding
-                      .top +
-                  24,
-              bottom: 62 + MediaQuery
-                  .of(context)
-                  .padding
-                  .bottom,
+              top: AppBar().preferredSize.height + MediaQuery.of(context).padding.top + 24,
+              bottom: 62 + MediaQuery.of(context).padding.bottom,
             ),
             itemCount: listViews.length,
             scrollDirection: Axis.vertical,
@@ -165,21 +137,16 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
             return FadeTransition(
               opacity: topBarAnimation,
               child: Transform(
-                transform: Matrix4.translationValues(
-                    0.0, 30 * (1.0 - topBarAnimation.value),
-                    0.0),
+                transform: Matrix4.translationValues(0.0, 30 * (1.0 - topBarAnimation.value), 0.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: FintnessAppTheme.white
-                        .withOpacity(topBarOpacity),
+                    color: FintnessAppTheme.white.withOpacity(topBarOpacity),
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(32.0),
                     ),
                     boxShadow: <BoxShadow>[
                       BoxShadow(
-                          color: FintnessAppTheme.grey
-                              .withOpacity(
-                              0.4 * topBarOpacity),
+                          color: FintnessAppTheme.grey.withOpacity(0.4 * topBarOpacity),
                           offset: const Offset(1.1, 1.1),
                           blurRadius: 10.0),
                     ],
@@ -187,43 +154,26 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        height: MediaQuery
-                            .of(context)
-                            .padding
-                            .top,
+                        height: MediaQuery.of(context).padding.top,
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                            left: 16,
-                            right: 16,
-                            top: 16 - 8.0 *
-                                topBarOpacity,
-                            bottom: 12 - 8.0 *
-                                topBarOpacity),
+                            left: 16, right: 16, top: 16 - 8.0 * topBarOpacity, bottom: 12 - 8.0 * topBarOpacity),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment
-                              .center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets
-                                    .all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                   'Statistika',
-                                  textAlign: TextAlign
-                                      .left,
+                                  textAlign: TextAlign.left,
                                   style: TextStyle(
-                                    fontFamily: FintnessAppTheme
-                                        .fontName,
-                                    fontWeight: FontWeight
-                                        .w700,
-                                    fontSize: 22 +
-                                        6 -
-                                        6 *
-                                            topBarOpacity,
+                                    fontFamily: FintnessAppTheme.fontName,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 22 + 6 - 6 * topBarOpacity,
                                     letterSpacing: 1.2,
-                                    color: FintnessAppTheme
-                                        .darkerText,
+                                    color: FintnessAppTheme.darkerText,
                                   ),
                                 ),
                               ),
@@ -232,58 +182,41 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
                               height: 38,
                               width: 38,
                               child: InkWell(
-                                highlightColor: Colors
-                                    .transparent,
-                                borderRadius: const BorderRadius
-                                    .all(
-                                    Radius
-                                        .circular(
-                                        32.0)),
+                                highlightColor: Colors.transparent,
+                                borderRadius: const BorderRadius.all(Radius.circular(32.0)),
                                 onTap: () {},
                                 child: Center(
                                   child: Icon(
-                                    Icons
-                                        .keyboard_arrow_left,
-                                    color: FintnessAppTheme
-                                        .grey,
+                                    Icons.keyboard_arrow_left,
+                                    color: FintnessAppTheme.grey,
                                   ),
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets
-                                  .only(
+                              padding: const EdgeInsets.only(
                                 left: 8,
                                 right: 8,
                               ),
                               child: Row(
-                                children: <
-                                    Widget>[
+                                children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets
-                                        .only(
-                                        right: 8),
+                                    padding: const EdgeInsets.only(right: 8),
                                     child: Icon(
-                                      Icons
-                                          .calendar_today,
-                                      color: FintnessAppTheme
-                                          .grey,
+                                      Icons.calendar_today,
+                                      color: FintnessAppTheme.grey,
                                       size: 18,
                                     ),
                                   ),
                                   Text(
                                     'Koledar',
-                                    textAlign: TextAlign
-                                        .left,
+                                    textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      fontFamily: FintnessAppTheme
-                                          .fontName,
-                                      fontWeight: FontWeight
-                                          .normal,
+                                      fontFamily: FintnessAppTheme.fontName,
+                                      fontWeight: FontWeight.normal,
                                       fontSize: 18,
                                       letterSpacing: -0.2,
-                                      color: FintnessAppTheme
-                                          .darkerText,
+                                      color: FintnessAppTheme.darkerText,
                                     ),
                                   ),
                                 ],
@@ -293,20 +226,13 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
                               height: 38,
                               width: 38,
                               child: InkWell(
-                                highlightColor: Colors
-                                    .transparent,
-                                borderRadius: const BorderRadius
-                                    .all(
-                                    Radius
-                                        .circular(
-                                        32.0)),
+                                highlightColor: Colors.transparent,
+                                borderRadius: const BorderRadius.all(Radius.circular(32.0)),
                                 onTap: () {},
                                 child: Center(
                                   child: Icon(
-                                    Icons
-                                        .keyboard_arrow_right,
-                                    color: FintnessAppTheme
-                                        .grey,
+                                    Icons.keyboard_arrow_right,
+                                    color: FintnessAppTheme.grey,
                                   ),
                                 ),
                               ),

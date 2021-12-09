@@ -5,10 +5,7 @@ class Authentication {
 
   Future<bool> register(String email, String password) async {
     try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-          email: email,
-          password: password
-      );
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password);
       return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -18,17 +15,14 @@ class Authentication {
       }
       return false;
     } catch (e) {
-      print(e);
       return false;
     }
   }
 
   Future<bool> login(String email, String password) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email,
-          password: password
-      );
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
       return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

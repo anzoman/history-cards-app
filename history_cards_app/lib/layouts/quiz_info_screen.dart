@@ -5,8 +5,6 @@ import 'package:history_cards_app/layouts/quiz_home_screen.dart';
 import 'package:history_cards_app/layouts/quiz_list_data.dart';
 import 'package:history_cards_app/layouts/quiz_view.dart';
 import 'package:history_cards_app/models/Question.dart';
-import 'package:history_cards_app/models/UserQuiz.dart';
-import 'package:survey_kit/survey_kit.dart';
 
 import '../models/Quiz.dart';
 import 'app_theme.dart';
@@ -130,7 +128,9 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
       images.add(await globals.dataStorage.getDownloadURL(question.image));
     }
 
-    image = quizElement.imagePath != null ? Image.network(quizElement.imagePath) : Image.network("https://viralsolutions.net/wp-content/uploads/2019/06/shutterstock_749036344.jpg");
+    image = quizElement.imagePath != null
+        ? Image.network(quizElement.imagePath)
+        : Image.network("https://viralsolutions.net/wp-content/uploads/2019/06/shutterstock_749036344.jpg");
   }
 
   @override
@@ -153,7 +153,10 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                     setState(() {
                       if (images.length > 1) {
                         imageIndex++;
-                        image = images[imageIndex % images.length] != null ? Image.network(images[imageIndex % images.length]) : Image.network("https://viralsolutions.net/wp-content/uploads/2019/06/shutterstock_749036344.jpg");
+                        image = images[imageIndex % images.length] != null
+                            ? Image.network(images[imageIndex % images.length])
+                            : Image.network(
+                                "https://viralsolutions.net/wp-content/uploads/2019/06/shutterstock_749036344.jpg");
                       }
                     });
                   },

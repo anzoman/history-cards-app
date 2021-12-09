@@ -81,8 +81,8 @@ class _LeaderBoardViewState extends State<LeaderBoardView> {
                                                             decoration: BoxDecoration(
                                                                 shape: BoxShape.circle,
                                                                 image: DecorationImage(
-                                                                    image: Image.asset(
-                                                                        'assets/images/userImage.png').image,
+                                                                    image: Image.asset('assets/images/userImage.png')
+                                                                        .image,
                                                                     fit: BoxFit.fill)))),
                                                   ],
                                                 ),

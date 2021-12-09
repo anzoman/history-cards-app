@@ -1,10 +1,10 @@
 import 'dart:convert';
 
+import 'package:history_cards_app/globals.dart' as globals;
 import 'package:history_cards_app/layouts/image_step.dart';
 import 'package:history_cards_app/models/Question.dart';
 import 'package:history_cards_app/models/Quiz.dart';
 import 'package:survey_kit/survey_kit.dart';
-import 'package:history_cards_app/globals.dart' as globals;
 
 class Survey {
   List<Map<String, dynamic>> jsonSurveySteps = [];

@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:history_cards_app/models/Question.dart';
+import 'package:history_cards_app/models/Quiz.dart';
 import 'package:history_cards_app/models/User.dart';
 import 'package:history_cards_app/models/UserQuestion.dart';
-import 'package:history_cards_app/models/Quiz.dart';
 import 'package:history_cards_app/models/UserQuiz.dart';
-import 'package:uuid/uuid.dart';
 import 'package:path/path.dart' as p;
+import 'package:uuid/uuid.dart';
 
 class DataStorage {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;

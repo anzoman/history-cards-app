@@ -51,16 +51,16 @@ class ImageStep extends DefaultStep.Step {
 
 class ImageStepResult extends QuestionResult {
   ImageStepResult(
-      Identifier id,
-      DateTime startDate,
-      DateTime endDate,
-      ) : super(
-    id: id,
-    startDate: startDate,
-    endDate: endDate,
-    valueIdentifier: 'image',
-    result: null,
-  );
+    Identifier id,
+    DateTime startDate,
+    DateTime endDate,
+  ) : super(
+          id: id,
+          startDate: startDate,
+          endDate: endDate,
+          valueIdentifier: 'image',
+          result: null,
+        );
 }
 
 class DetailScreen extends StatelessWidget {

@@ -216,7 +216,8 @@ class _QuestionFormState extends State<QuestionForm> {
                                     if (this.image != null) {
                                       imagePath = await globals.dataStorage.uploadImage(this.image.path);
                                     }
-                                    Question question = Question(this.question, this.answer, globals.survey.questionIndex, imagePath, this.quiz.id);
+                                    Question question = Question(this.question, this.answer,
+                                        globals.survey.questionIndex, imagePath, this.quiz.id);
                                     await globals.dataStorage.createQuestion(question);
                                     globals.survey.questionIndex++;
 
@@ -226,13 +227,13 @@ class _QuestionFormState extends State<QuestionForm> {
                                       globals.survey.addTextAnswerFormatStep(question);
                                     }
 
-                                    String jsonFilePath = await globals.dataStorage.uploadJSON(globals.survey.surveyTaskToJSON());
+                                    String jsonFilePath =
+                                        await globals.dataStorage.uploadJSON(globals.survey.surveyTaskToJSON());
                                     this.quiz.survey = jsonFilePath;
                                     this.quiz = await globals.dataStorage.updateQuiz(this.quiz);
 
                                     _ackAlert();
                                   } catch (error) {
-                                    print(error);
                                     _ackAlert2();
                                   }
                                 },
@@ -251,7 +252,8 @@ class _QuestionFormState extends State<QuestionForm> {
                                     if (this.image != null) {
                                       imagePath = await globals.dataStorage.uploadImage(this.image.path);
                                     }
-                                    Question question = Question(this.question, this.answer, globals.survey.questionIndex, imagePath, this.quiz.id);
+                                    Question question = Question(this.question, this.answer,
+                                        globals.survey.questionIndex, imagePath, this.quiz.id);
                                     await globals.dataStorage.createQuestion(question);
                                     globals.survey.questionIndex++;
 

@@ -1,7 +1,7 @@
-import 'dart:typed_data';
 
 import 'package:history_cards_app/globals.dart' as globals;
 import 'package:history_cards_app/models/Question.dart';
+
 import '../models/Quiz.dart';
 
 class QuizListData {
@@ -27,7 +27,6 @@ class QuizListData {
   static Future<List<QuizListData>> getQuizList() async {
     List<QuizListData> quizList = [];
     List<Quiz> quizzes = await globals.dataStorage.getQuizzesForUser(globals.currentUser);
-    print(quizzes);
 
     if (quizzes.isNotEmpty) {
       for (Quiz quiz in quizzes) {

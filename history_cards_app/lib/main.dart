@@ -4,11 +4,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:history_cards_app/app_theme.dart';
-import 'package:progress_dialog/progress_dialog.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 import 'layouts/login_register.dart';
-import 'layouts/question.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

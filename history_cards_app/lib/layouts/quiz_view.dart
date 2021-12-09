@@ -49,11 +49,9 @@ class _QuizViewState extends State<QuizView> {
                       for (var stepResult in result.results) {
                         QuestionResult<dynamic> questionResult = stepResult.results[0];
                         if (questionResult.result != null) {
-                          print(questionResult.result);
                           Question question = questions[counter];
                           bool correct = false;
                           if (["DA", "NE"].contains(question.answer)) {
-                            print("DA/NE");
                             if (questionResult.result == BooleanResult.POSITIVE && question.answer == "DA") {
                               correct = true;
                               newPoints += 3;
@@ -73,11 +71,11 @@ class _QuizViewState extends State<QuizView> {
                           }
                           await globals.dataStorage
                               .createUserQuestion(UserQuestion(globals.currentUser.id, question.id, correct));
-                          await globals.dataStorage
-                              .updateUserPoints(globals.currentUser, globals.currentUser.points + newPoints);
                           counter++;
                         }
                       }
+                      await globals.dataStorage
+                          .updateUserPoints(globals.currentUser, globals.currentUser.points + newPoints);
                       return showDialog(
                           context: buildContext,
                           builder: (_) => NetworkGiffyDialog(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:history_cards_app/globals.dart' as globals;
 import 'package:history_cards_app/layouts/question_form.dart';
 import 'package:history_cards_app/models/Quiz.dart';

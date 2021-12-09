@@ -1,7 +1,7 @@
-import 'package:history_cards_app/app_theme.dart';
-import 'package:history_cards_app/globals.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
+import 'package:history_cards_app/app_theme.dart';
+import 'package:history_cards_app/globals.dart' as globals;
 
 import 'homelist.dart';
 
@@ -108,7 +108,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                   animationController: animationController,
                                   listData: homeList[index],
                                   callBack: () {
-                                    if (homeList[index].imagePath == 'assets/images/teacher_icon.png' || homeList[index].imagePath == 'assets/images/opinions_icon.png') {
+                                    if (homeList[index].imagePath == 'assets/images/teacher_icon.png' ||
+                                        homeList[index].imagePath == 'assets/images/opinions_icon.png') {
                                       if (globals.currentUser.permission == 1) {
                                         Navigator.push<dynamic>(
                                           context,
