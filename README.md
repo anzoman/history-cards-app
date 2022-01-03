@@ -10,8 +10,6 @@ This is a mobile app for learning history written in Flutter and Dart (+ Firebas
 | Mobile app video               | https://youtu.be/vRPqyU8SQYc              |
 | ------------------------------ |:-----------------------------------------:|
 
-## Prerequisites
-
 To properly run the application from Android Studio (or Visual Studio code) you have to install the following:
 
 - [Android Studio](https://developer.android.com/studio/install)
