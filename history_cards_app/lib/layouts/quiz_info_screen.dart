@@ -104,7 +104,6 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
     animation = Tween<double>(begin: 0.0, end: 1.0)
         .animate(CurvedAnimation(parent: animationController, curve: Interval(0, 1.0, curve: Curves.fastOutSlowIn)));
     setData();
-    //slike = getSlikeZaKamp(0);
     super.initState();
   }
 
@@ -137,7 +136,7 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
   Widget build(BuildContext context) {
     final double tempHeight = MediaQuery.of(context).size.height - (MediaQuery.of(context).size.width / 1.2) + 24.0;
     return Container(
-      color: CampInfoAppTheme.nearlyWhite,
+      color: QuizInfoAppTheme.nearlyWhite,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Stack(
@@ -170,12 +169,12 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
               right: 0,
               child: Container(
                 decoration: BoxDecoration(
-                  color: CampInfoAppTheme.nearlyWhite,
+                  color: QuizInfoAppTheme.nearlyWhite,
                   borderRadius:
                       const BorderRadius.only(topLeft: Radius.circular(32.0), topRight: Radius.circular(32.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
-                        color: CampInfoAppTheme.grey.withOpacity(0.2),
+                        color: QuizInfoAppTheme.grey.withOpacity(0.2),
                         offset: const Offset(1.1, 1.1),
                         blurRadius: 10.0),
                   ],
@@ -199,7 +198,7 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                                 fontWeight: FontWeight.w600,
                                 fontSize: 22,
                                 letterSpacing: 0.27,
-                                color: CampInfoAppTheme.darkerText,
+                                color: QuizInfoAppTheme.darkerText,
                               ),
                             ),
                           ),
@@ -216,7 +215,7 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                                     fontWeight: FontWeight.w200,
                                     fontSize: 17,
                                     letterSpacing: 0.27,
-                                    color: CampInfoAppTheme.nearlyBlue,
+                                    color: QuizInfoAppTheme.nearlyBlue,
                                   ),
                                 ),
                                 Container(
@@ -229,12 +228,12 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                                           fontWeight: FontWeight.w200,
                                           fontSize: 17,
                                           letterSpacing: 0.27,
-                                          color: CampInfoAppTheme.grey,
+                                          color: QuizInfoAppTheme.grey,
                                         ),
                                       ),
                                       Icon(
                                         Icons.star,
-                                        color: CampInfoAppTheme.nearlyBlue,
+                                        color: QuizInfoAppTheme.nearlyBlue,
                                         size: 18,
                                       ),
                                     ],
@@ -269,7 +268,7 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                                     fontWeight: FontWeight.w200,
                                     fontSize: 14,
                                     letterSpacing: 0.27,
-                                    color: CampInfoAppTheme.grey,
+                                    color: QuizInfoAppTheme.grey,
                                   ),
                                   maxLines: 8,
                                   overflow: TextOverflow.ellipsis,
@@ -292,11 +291,11 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                                     child: InkWell(
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: CampInfoAppTheme.nearlyWhite,
+                                          color: QuizInfoAppTheme.nearlyWhite,
                                           borderRadius: const BorderRadius.all(
                                             Radius.circular(16.0),
                                           ),
-                                          border: Border.all(color: CampInfoAppTheme.grey.withOpacity(0.2)),
+                                          border: Border.all(color: QuizInfoAppTheme.grey.withOpacity(0.2)),
                                         ),
                                         child: Icon(
                                           Icons.arrow_back,
@@ -322,13 +321,13 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                                       child: Container(
                                         height: 48,
                                         decoration: BoxDecoration(
-                                          color: CampInfoAppTheme.nearlyBlue,
+                                          color: QuizInfoAppTheme.nearlyBlue,
                                           borderRadius: const BorderRadius.all(
                                             Radius.circular(16.0),
                                           ),
                                           boxShadow: <BoxShadow>[
                                             BoxShadow(
-                                                color: CampInfoAppTheme.nearlyBlue.withOpacity(0.5),
+                                                color: QuizInfoAppTheme.nearlyBlue.withOpacity(0.5),
                                                 offset: const Offset(1.1, 1.1),
                                                 blurRadius: 10.0),
                                           ],
@@ -341,7 +340,7 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                                               fontWeight: FontWeight.w600,
                                               fontSize: 18,
                                               letterSpacing: 0.0,
-                                              color: CampInfoAppTheme.nearlyWhite,
+                                              color: QuizInfoAppTheme.nearlyWhite,
                                             ),
                                           ),
                                         ),
@@ -378,7 +377,7 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                 alignment: Alignment.center,
                 scale: CurvedAnimation(parent: animationController, curve: Curves.fastOutSlowIn),
                 child: Card(
-                  color: CampInfoAppTheme.nearlyBlue,
+                  color: QuizInfoAppTheme.nearlyBlue,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
                   elevation: 10.0,
                   child: InkWell(
@@ -388,7 +387,7 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                       child: Center(
                         child: Icon(
                           Icons.favorite,
-                          color: CampInfoAppTheme.nearlyWhite,
+                          color: QuizInfoAppTheme.nearlyWhite,
                           size: 30,
                         ),
                       ),
@@ -411,7 +410,7 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                     borderRadius: BorderRadius.circular(AppBar().preferredSize.height),
                     child: Icon(
                       Icons.arrow_back_ios,
-                      color: CampInfoAppTheme.nearlyBlack,
+                      color: QuizInfoAppTheme.nearlyBlack,
                     ),
                     onTap: () {
                       Navigator.pop(context);
@@ -431,10 +430,10 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
       padding: const EdgeInsets.all(4.0),
       child: Container(
         decoration: BoxDecoration(
-          color: CampInfoAppTheme.nearlyWhite,
+          color: QuizInfoAppTheme.nearlyWhite,
           borderRadius: const BorderRadius.all(Radius.circular(16.0)),
           boxShadow: <BoxShadow>[
-            BoxShadow(color: CampInfoAppTheme.grey.withOpacity(0.2), offset: const Offset(1.1, 1.1), blurRadius: 8.0),
+            BoxShadow(color: QuizInfoAppTheme.grey.withOpacity(0.2), offset: const Offset(1.1, 1.1), blurRadius: 8.0),
           ],
         ),
         child: Padding(
@@ -450,7 +449,7 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
                   letterSpacing: 0.27,
-                  color: CampInfoAppTheme.nearlyBlue,
+                  color: QuizInfoAppTheme.nearlyBlue,
                 ),
               ),
               Text(
@@ -460,7 +459,7 @@ class _QuizInfoScreenState extends State<QuizInfoScreen> with TickerProviderStat
                   fontWeight: FontWeight.w200,
                   fontSize: 14,
                   letterSpacing: 0.27,
-                  color: CampInfoAppTheme.grey,
+                  color: QuizInfoAppTheme.grey,
                 ),
               ),
             ],

@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Authentication {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<bool> register(String email, String password) async {
     try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password);
+      await auth.createUserWithEmailAndPassword(email: email, password: password);
       return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -21,8 +22,7 @@ class Authentication {
 
   Future<bool> login(String email, String password) async {
     try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+      await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
       return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -31,6 +31,23 @@ class Authentication {
         print('Wrong password provided for that user.');
       }
       return false;
+    }
+  }
+
+  Future<String> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication googleAuth = await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      UserCredential userCredential = await auth.signInWithCredential(credential);
+      return userCredential.user.email;
+    } catch (e) {
+      return null;
     }
   }
 }

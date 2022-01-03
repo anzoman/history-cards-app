@@ -5,6 +5,7 @@ import 'package:history_cards_app/layouts/navigation_home_screen.dart';
 import 'package:history_cards_app/models/Question.dart';
 import 'package:history_cards_app/models/Quiz.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:survey_kit/survey_kit.dart';
 
 class QuestionForm extends StatefulWidget {
   Quiz quiz;
@@ -17,20 +18,24 @@ class QuestionForm extends StatefulWidget {
 
 class _QuestionFormState extends State<QuestionForm> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-
   final ImagePicker picker = ImagePicker();
+  static List<String> choicesList;
+
   Quiz quiz;
   List<String> questionTypes;
   String question;
   String answer;
   String selectedQuestionType;
   XFile image;
+  bool textChoicesVisible;
 
   _QuestionFormState(this.quiz) {
     questionTypes = ["DA/NE", "VPIS ODGOVORA", "IZBIRA ODGOVORA"];
     selectedQuestionType = questionTypes[0];
     question = "";
     answer = "";
+    textChoicesVisible = false;
+    choicesList = [null];
     image = null;
   }
 
@@ -96,6 +101,51 @@ class _QuestionFormState extends State<QuestionForm> {
                 Navigator.of(context).pop();
               },
             ));
+  }
+
+  Widget _addRemoveButton(bool add, int index) {
+    return InkWell(
+      onTap: () {
+        if (add) {
+          // add new text-fields at the top of all friends textfields
+          choicesList.insert(0, null);
+        } else
+          choicesList.removeAt(index);
+        setState(() {});
+      },
+      child: Container(
+        width: 30,
+        height: 30,
+        decoration: BoxDecoration(
+          color: (add) ? Colors.green : Colors.red,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Icon(
+          (add) ? Icons.add : Icons.remove,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _getChoices() {
+    List<Widget> friendsTextFieldsList = [];
+    for (int i = 0; i < choicesList.length; i++) {
+      friendsTextFieldsList.add(Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: Row(
+          children: [
+            Expanded(child: ChoicesTextFields(i)),
+            SizedBox(
+              width: 16,
+            ),
+            // we need add button at last friends row only
+            _addRemoveButton(i == choicesList.length - 1, i),
+          ],
+        ),
+      ));
+    }
+    return friendsTextFieldsList;
   }
 
   @override
@@ -183,6 +233,11 @@ class _QuestionFormState extends State<QuestionForm> {
                             onChanged: (String newValue) {
                               setState(() {
                                 selectedQuestionType = newValue;
+                                if (selectedQuestionType == questionTypes[2]) {
+                                  this.textChoicesVisible = true;
+                                } else {
+                                  this.textChoicesVisible = false;
+                                }
                                 state.didChange(newValue);
                               });
                             },
@@ -197,6 +252,14 @@ class _QuestionFormState extends State<QuestionForm> {
                       );
                     },
                   ),
+                  new Text(""),
+                  new Text(""),
+                  new Visibility(
+                      visible: this.textChoicesVisible,
+                      child: Text(
+                        'Dodaj možne odgovore',
+                      )),
+                  new Visibility(visible: this.textChoicesVisible, child: Column(children: _getChoices())),
                   new Text(""),
                   new Container(
                       padding: const EdgeInsets.only(left: 40.0, top: 20.0),
@@ -223,8 +286,14 @@ class _QuestionFormState extends State<QuestionForm> {
 
                                     if (this.selectedQuestionType == this.questionTypes[0]) {
                                       globals.survey.addBooleanAnswerFormatStep(question);
-                                    } else {
+                                    } else if (this.selectedQuestionType == this.questionTypes[1]) {
                                       globals.survey.addTextAnswerFormatStep(question);
+                                    } else {
+                                      List<TextChoice> textChoices = [];
+                                      for (String choice in _QuestionFormState.choicesList) {
+                                        textChoices.add(new TextChoice(text: choice, value: choice));
+                                      }
+                                      globals.survey.addSingleChoiceAnswerFormatStep(question, textChoices);
                                     }
 
                                     String jsonFilePath =
@@ -257,10 +326,16 @@ class _QuestionFormState extends State<QuestionForm> {
                                     await globals.dataStorage.createQuestion(question);
                                     globals.survey.questionIndex++;
 
-                                    if (this.selectedQuestionType == questionTypes[0]) {
+                                    if (this.selectedQuestionType == this.questionTypes[0]) {
                                       globals.survey.addBooleanAnswerFormatStep(question);
-                                    } else {
+                                    } else if (this.selectedQuestionType == this.questionTypes[1]) {
                                       globals.survey.addTextAnswerFormatStep(question);
+                                    } else {
+                                      List<TextChoice> textChoices = [];
+                                      for (String choice in _QuestionFormState.choicesList) {
+                                        textChoices.add(new TextChoice(text: choice, value: choice));
+                                      }
+                                      globals.survey.addSingleChoiceAnswerFormatStep(question, textChoices);
                                     }
 
                                     Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -277,6 +352,47 @@ class _QuestionFormState extends State<QuestionForm> {
                       )),
                 ],
               ))),
+    );
+  }
+}
+
+class ChoicesTextFields extends StatefulWidget {
+  final int index;
+
+  ChoicesTextFields(this.index);
+
+  @override
+  _ChoicesTextFieldsState createState() => _ChoicesTextFieldsState();
+}
+
+class _ChoicesTextFieldsState extends State<ChoicesTextFields> {
+  TextEditingController _nameController;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _nameController.text = _QuestionFormState.choicesList[widget.index] ?? '';
+    });
+    return TextFormField(
+      controller: _nameController,
+      onChanged: (text) => _QuestionFormState.choicesList[widget.index] = text,
+      decoration: InputDecoration(hintText: 'Dodaj nov možen odgovor', icon: Icon(Icons.view_day_outlined)),
+      validator: (v) {
+        if (v.trim().isEmpty) return 'Vpisati je treba nov možen odgovor';
+        return null;
+      },
     );
   }
 }

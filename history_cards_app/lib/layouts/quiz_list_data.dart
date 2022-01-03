@@ -1,4 +1,3 @@
-
 import 'package:history_cards_app/globals.dart' as globals;
 import 'package:history_cards_app/models/Question.dart';
 
@@ -31,9 +30,13 @@ class QuizListData {
     if (quizzes.isNotEmpty) {
       for (Quiz quiz in quizzes) {
         List<Question> questionList = await globals.dataStorage.getQuestionsForQuiz(quiz);
+        String imageURL = "https://viralsolutions.net/wp-content/uploads/2019/06/shutterstock_749036344.jpg";
+        if (questionList.isNotEmpty && questionList[0].image != null) {
+          imageURL = await globals.dataStorage.getDownloadURL(questionList[0].image);
+        }
 
         quizList.add(QuizListData(
-            imagePath: await globals.dataStorage.getDownloadURL(questionList[0].image),
+            imagePath: imageURL,
             titleTxt: quiz.name,
             subTxt: "Zgodovinski kviz",
             dist: "Ves svet",

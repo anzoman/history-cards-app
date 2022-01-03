@@ -1,14 +1,15 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:history_cards_app/globals.dart' as globals;
 import 'package:history_cards_app/layouts/profile_theme.dart';
 import 'package:history_cards_app/main.dart';
 
-class MediterranesnDietView extends StatelessWidget {
+class StatsView extends StatelessWidget {
   final AnimationController animationController;
   final Animation animation;
 
-  const MediterranesnDietView({Key key, this.animationController, this.animation}) : super(key: key);
+  const StatsView({Key key, this.animationController, this.animation}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +24,14 @@ class MediterranesnDietView extends StatelessWidget {
               padding: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 18),
               child: Container(
                 decoration: BoxDecoration(
-                  color: FintnessAppTheme.white,
+                  color: ProfileAppTheme.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(8.0),
                       bottomLeft: Radius.circular(8.0),
                       bottomRight: Radius.circular(8.0),
                       topRight: Radius.circular(68.0)),
                   boxShadow: <BoxShadow>[
-                    BoxShadow(
-                        color: FintnessAppTheme.grey.withOpacity(0.2), offset: Offset(1.1, 1.1), blurRadius: 10.0),
+                    BoxShadow(color: ProfileAppTheme.grey.withOpacity(0.2), offset: Offset(1.1, 1.1), blurRadius: 10.0),
                   ],
                 ),
                 child: Column(
@@ -64,14 +64,14 @@ class MediterranesnDietView extends StatelessWidget {
                                             Padding(
                                               padding: const EdgeInsets.only(left: 4, bottom: 2),
                                               child: Text(
-                                                'Rešenih vprašanj',
+                                                'Rešenih kvizov',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                  fontFamily: FintnessAppTheme.fontName,
+                                                  fontFamily: ProfileAppTheme.fontName,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16,
                                                   letterSpacing: -0.1,
-                                                  color: FintnessAppTheme.grey.withOpacity(0.5),
+                                                  color: ProfileAppTheme.grey.withOpacity(0.5),
                                                 ),
                                               ),
                                             ),
@@ -82,18 +82,72 @@ class MediterranesnDietView extends StatelessWidget {
                                                 SizedBox(
                                                   width: 28,
                                                   height: 28,
-                                                  child: Icon(Icons.message),
+                                                  child: Icon(Icons.book),
                                                 ),
                                                 Padding(
                                                   padding: const EdgeInsets.only(left: 4, bottom: 3),
                                                   child: Text(
-                                                    '${(0 * animation.value).toInt()}',
+                                                    '${globals.userStats.solvedQuizzes}',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                      fontFamily: FintnessAppTheme.fontName,
+                                                      fontFamily: ProfileAppTheme.fontName,
                                                       fontWeight: FontWeight.w600,
                                                       fontSize: 16,
-                                                      color: FintnessAppTheme.darkerText,
+                                                      color: ProfileAppTheme.darkerText,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 4, bottom: 3),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: <Widget>[
+                                                SizedBox(
+                                                  width: 28,
+                                                  height: 28,
+                                                  child: Icon(Icons.featured_play_list_outlined),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 4, bottom: 3),
+                                                  child: Text(
+                                                    'Na voljo: ${globals.userStats.availableQuizzes}',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily: ProfileAppTheme.fontName,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 12,
+                                                      color: ProfileAppTheme.darkerText,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 4, bottom: 3),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: <Widget>[
+                                                SizedBox(
+                                                  width: 28,
+                                                  height: 28,
+                                                  child: Icon(Icons.featured_play_list_outlined),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 4, bottom: 3),
+                                                  child: Text(
+                                                    'Ustvarjenih: ${globals.userStats.createdQuizzes}',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily: ProfileAppTheme.fontName,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 12,
+                                                      color: ProfileAppTheme.darkerText,
                                                     ),
                                                   ),
                                                 ),
@@ -129,14 +183,14 @@ class MediterranesnDietView extends StatelessWidget {
                                             Padding(
                                               padding: const EdgeInsets.only(left: 4, bottom: 2),
                                               child: Text(
-                                                'Rešenih kvizov',
+                                                'Rešenih vprašanj',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                  fontFamily: FintnessAppTheme.fontName,
+                                                  fontFamily: ProfileAppTheme.fontName,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16,
                                                   letterSpacing: -0.1,
-                                                  color: FintnessAppTheme.grey.withOpacity(0.5),
+                                                  color: ProfileAppTheme.grey.withOpacity(0.5),
                                                 ),
                                               ),
                                             ),
@@ -147,32 +201,66 @@ class MediterranesnDietView extends StatelessWidget {
                                                 SizedBox(
                                                   width: 28,
                                                   height: 28,
-                                                  child: Icon(Icons.book),
+                                                  child: Icon(Icons.message),
                                                 ),
                                                 Padding(
                                                   padding: const EdgeInsets.only(left: 4, bottom: 3),
                                                   child: Text(
-                                                    '${(0 * animation.value).toInt()}',
+                                                    '${globals.userStats.solvedQuestions}',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                      fontFamily: FintnessAppTheme.fontName,
+                                                      fontFamily: ProfileAppTheme.fontName,
                                                       fontWeight: FontWeight.w600,
                                                       fontSize: 16,
-                                                      color: FintnessAppTheme.darkerText,
+                                                      color: ProfileAppTheme.darkerText,
                                                     ),
                                                   ),
                                                 ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: <Widget>[
+                                                SizedBox(
+                                                  width: 28,
+                                                  height: 28,
+                                                  child: Icon(Icons.check),
+                                                ),
                                                 Padding(
-                                                  padding: const EdgeInsets.only(left: 8, bottom: 3),
+                                                  padding: const EdgeInsets.only(left: 4, bottom: 3),
                                                   child: Text(
-                                                    '',
+                                                    'Pravilnih: ${globals.userStats.solvedQuestions}',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                      fontFamily: FintnessAppTheme.fontName,
+                                                      fontFamily: ProfileAppTheme.fontName,
                                                       fontWeight: FontWeight.w600,
                                                       fontSize: 12,
-                                                      letterSpacing: -0.2,
-                                                      color: FintnessAppTheme.grey.withOpacity(0.5),
+                                                      color: ProfileAppTheme.darkerText,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: <Widget>[
+                                                SizedBox(
+                                                  width: 28,
+                                                  height: 28,
+                                                  child: Icon(Icons.clear_outlined),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 4, bottom: 3),
+                                                  child: Text(
+                                                    'Napačnih: ${globals.userStats.solvedQuestions}',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily: ProfileAppTheme.fontName,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 12,
+                                                      color: ProfileAppTheme.darkerText,
                                                     ),
                                                   ),
                                                 ),
@@ -199,57 +287,46 @@ class MediterranesnDietView extends StatelessWidget {
                                       width: 100,
                                       height: 100,
                                       decoration: BoxDecoration(
-                                        color: FintnessAppTheme.white,
+                                        color: ProfileAppTheme.white,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(100.0),
                                         ),
                                         border: new Border.all(
-                                            width: 4, color: FintnessAppTheme.nearlyDarkBlue.withOpacity(0.2)),
+                                            width: 4, color: ProfileAppTheme.nearlyDarkBlue.withOpacity(0.2)),
                                       ),
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
-                                            '${(0 * animation.value).toInt()}',
+                                            '${globals.userStats.points}',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              fontFamily: FintnessAppTheme.fontName,
+                                              fontFamily: ProfileAppTheme.fontName,
                                               fontWeight: FontWeight.normal,
                                               fontSize: 24,
                                               letterSpacing: 0.0,
-                                              color: FintnessAppTheme.nearlyDarkBlue,
+                                              color: ProfileAppTheme.nearlyDarkBlue,
                                             ),
                                           ),
                                           Text(
                                             'točk',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              fontFamily: FintnessAppTheme.fontName,
+                                              fontFamily: ProfileAppTheme.fontName,
                                               fontWeight: FontWeight.bold,
                                               fontSize: 12,
                                               letterSpacing: 0.0,
-                                              color: FintnessAppTheme.grey.withOpacity(0.5),
+                                              color: ProfileAppTheme.grey.withOpacity(0.5),
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: CustomPaint(
-                                      painter: CurvePainter(colors: [
-                                        FintnessAppTheme.nearlyDarkBlue,
-                                        HexColor("#8A98E8"),
-                                        HexColor("#8A98E8")
-                                      ], angle: 140 + (360 - 140) * (1.0 - animation.value)),
-                                      child: SizedBox(
-                                        width: 108,
-                                        height: 108,
-                                      ),
-                                    ),
-                                  )
+                                  SizedBox(
+                                    height: 8,
+                                  ),
                                 ],
                               ),
                             ),
@@ -262,7 +339,7 @@ class MediterranesnDietView extends StatelessWidget {
                       child: Container(
                         height: 2,
                         decoration: BoxDecoration(
-                          color: FintnessAppTheme.background,
+                          color: ProfileAppTheme.background,
                           borderRadius: BorderRadius.all(Radius.circular(4.0)),
                         ),
                       ),
@@ -280,11 +357,11 @@ class MediterranesnDietView extends StatelessWidget {
                                   'Kvizi',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontFamily: FintnessAppTheme.fontName,
+                                    fontFamily: ProfileAppTheme.fontName,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 16,
                                     letterSpacing: -0.2,
-                                    color: FintnessAppTheme.darkText,
+                                    color: ProfileAppTheme.darkText,
                                   ),
                                 ),
                                 Padding(
@@ -316,13 +393,13 @@ class MediterranesnDietView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 6),
                                   child: Text(
-                                    "${0} kampov",
+                                    "${globals.userStats.allQuizzes}",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontFamily: FintnessAppTheme.fontName,
+                                      fontFamily: ProfileAppTheme.fontName,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
-                                      color: FintnessAppTheme.grey.withOpacity(0.5),
+                                      color: ProfileAppTheme.grey.withOpacity(0.5),
                                     ),
                                   ),
                                 ),
@@ -342,11 +419,11 @@ class MediterranesnDietView extends StatelessWidget {
                                       'Vprašanja',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontFamily: FintnessAppTheme.fontName,
+                                        fontFamily: ProfileAppTheme.fontName,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 16,
                                         letterSpacing: -0.2,
-                                        color: FintnessAppTheme.darkText,
+                                        color: ProfileAppTheme.darkText,
                                       ),
                                     ),
                                     Padding(
@@ -378,13 +455,13 @@ class MediterranesnDietView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
-                                        "${0} mest",
+                                        "${globals.userStats.allQuestions}",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontFamily: FintnessAppTheme.fontName,
+                                          fontFamily: ProfileAppTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
-                                          color: FintnessAppTheme.grey.withOpacity(0.5),
+                                          color: ProfileAppTheme.grey.withOpacity(0.5),
                                         ),
                                       ),
                                     ),
@@ -405,11 +482,11 @@ class MediterranesnDietView extends StatelessWidget {
                                     Text(
                                       'Uporabniki',
                                       style: TextStyle(
-                                        fontFamily: FintnessAppTheme.fontName,
+                                        fontFamily: ProfileAppTheme.fontName,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 16,
                                         letterSpacing: -0.2,
-                                        color: FintnessAppTheme.darkText,
+                                        color: ProfileAppTheme.darkText,
                                       ),
                                     ),
                                     Padding(
@@ -441,13 +518,13 @@ class MediterranesnDietView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
-                                        '${0} storitev',
+                                        '${globals.userStats.allUsers}',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontFamily: FintnessAppTheme.fontName,
+                                          fontFamily: ProfileAppTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
-                                          color: FintnessAppTheme.grey.withOpacity(0.5),
+                                          color: ProfileAppTheme.grey.withOpacity(0.5),
                                         ),
                                       ),
                                     ),

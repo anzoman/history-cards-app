@@ -25,7 +25,7 @@ class WorkoutView extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                        colors: [FintnessAppTheme.nearlyDarkBlue, HexColor("#6F56E8")],
+                        colors: [ProfileAppTheme.nearlyDarkBlue, HexColor("#6F56E8")],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight),
                     borderRadius: BorderRadius.only(
@@ -35,7 +35,7 @@ class WorkoutView extends StatelessWidget {
                         topRight: Radius.circular(68.0)),
                     boxShadow: <BoxShadow>[
                       BoxShadow(
-                          color: FintnessAppTheme.grey.withOpacity(0.6), offset: Offset(1.1, 1.1), blurRadius: 10.0),
+                          color: ProfileAppTheme.grey.withOpacity(0.6), offset: Offset(1.1, 1.1), blurRadius: 10.0),
                     ],
                   ),
                   child: Padding(
@@ -48,11 +48,11 @@ class WorkoutView extends StatelessWidget {
                           'Rezervacije kampiranja',
                           textAlign: TextAlign.left,
                           style: TextStyle(
-                            fontFamily: FintnessAppTheme.fontName,
+                            fontFamily: ProfileAppTheme.fontName,
                             fontWeight: FontWeight.normal,
                             fontSize: 14,
                             letterSpacing: 0.0,
-                            color: FintnessAppTheme.white,
+                            color: ProfileAppTheme.white,
                           ),
                         ),
                         Padding(
@@ -61,11 +61,11 @@ class WorkoutView extends StatelessWidget {
                             'Klikni in si rezerviraj\nsvoje mesto za dopust v kampih!',
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              fontFamily: FintnessAppTheme.fontName,
+                              fontFamily: ProfileAppTheme.fontName,
                               fontWeight: FontWeight.normal,
                               fontSize: 20,
                               letterSpacing: 0.0,
-                              color: FintnessAppTheme.white,
+                              color: ProfileAppTheme.white,
                             ),
                           ),
                         ),
@@ -82,7 +82,7 @@ class WorkoutView extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 4),
                                 child: Icon(
                                   Icons.help_outline,
-                                  color: FintnessAppTheme.white,
+                                  color: ProfileAppTheme.white,
                                   size: 16,
                                 ),
                               ),
@@ -92,11 +92,11 @@ class WorkoutView extends StatelessWidget {
                                   'Klikni za rezervacijo',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontFamily: FintnessAppTheme.fontName,
+                                    fontFamily: ProfileAppTheme.fontName,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
                                     letterSpacing: 0.0,
-                                    color: FintnessAppTheme.white,
+                                    color: ProfileAppTheme.white,
                                   ),
                                 ),
                               ),
@@ -105,11 +105,11 @@ class WorkoutView extends StatelessWidget {
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: FintnessAppTheme.nearlyWhite,
+                                  color: ProfileAppTheme.nearlyWhite,
                                   shape: BoxShape.circle,
                                   boxShadow: <BoxShadow>[
                                     BoxShadow(
-                                        color: FintnessAppTheme.nearlyBlack.withOpacity(0.4),
+                                        color: ProfileAppTheme.nearlyBlack.withOpacity(0.4),
                                         offset: Offset(8.0, 8.0),
                                         blurRadius: 8.0),
                                   ],

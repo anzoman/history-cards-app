@@ -29,11 +29,11 @@ class TitleView extends StatelessWidget {
                         titleTxt,
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontFamily: FintnessAppTheme.fontName,
+                          fontFamily: ProfileAppTheme.fontName,
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           letterSpacing: 0.5,
-                          color: FintnessAppTheme.lightText,
+                          color: ProfileAppTheme.lightText,
                         ),
                       ),
                     ),
@@ -49,11 +49,11 @@ class TitleView extends StatelessWidget {
                               subTxt,
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                fontFamily: FintnessAppTheme.fontName,
+                                fontFamily: ProfileAppTheme.fontName,
                                 fontWeight: FontWeight.normal,
                                 fontSize: 16,
                                 letterSpacing: 0.5,
-                                color: FintnessAppTheme.nearlyDarkBlue,
+                                color: ProfileAppTheme.nearlyDarkBlue,
                               ),
                             ),
                             SizedBox(
@@ -61,7 +61,7 @@ class TitleView extends StatelessWidget {
                               width: 26,
                               child: Icon(
                                 Icons.arrow_forward,
-                                color: FintnessAppTheme.darkText,
+                                color: ProfileAppTheme.darkText,
                                 size: 18,
                               ),
                             ),

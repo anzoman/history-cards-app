@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
   Future<String> _onLogin(LoginData data) async {
     print('Name: ${data.name}, Password: ${data.password}');
     bool authSuccess = await globals.authentication.login(data.name, data.password);
-    User user = await globals.dataStorage.login(data.name, data.password);
+    User user = await globals.dataStorage.login(data.name);
     return Future.delayed(loginTime).then((_) {
       if (!authSuccess) {
         return 'Wrong email or password!';
@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
     });
   }
 
-  Future<String> _onRegister(LoginData data) async {
+  Future<String> _onRegister(SignupData data) async {
     print('Name: ${data.name}, Password: ${data.password}');
     bool authSuccess = await globals.authentication.register(data.name, data.password);
     User user = await globals.dataStorage.register(User(data.name, data.name, data.name, "", 0, 0));
@@ -77,9 +77,22 @@ class LoginScreen extends StatelessWidget {
           icon: FontAwesomeIcons.google,
           label: 'Google',
           callback: () async {
-            debugPrint('start google sign in');
-            await Future.delayed(loginTime);
-            debugPrint('stop google sign in');
+            String username = await globals.authentication.signInWithGoogle();
+            if (username != null) {
+              bool usernameExists = await globals.dataStorage.usernameExists(username);
+              User user = null;
+              if (!usernameExists) {
+                user = await globals.dataStorage.register(User(username, username, username, "", 0, 0));
+              } else {
+                user = await globals.dataStorage.login(username);
+              }
+              globals.currentUser = user;
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => NavigationHomeScreen(),
+              ));
+            } else {
+              return 'Google sign in failed!';
+            }
             return null;
           },
         ),
@@ -118,7 +131,7 @@ class LoginScreen extends StatelessWidget {
           recoverPasswordIntro: "Pozabljeno geslo?",
           recoverPasswordSuccess: "Email je bil uspešno poslan!",
           confirmPasswordError: 'Gesli se ne ujemata!',
-          providersTitle: "prijaviš se lahko tudi z"),
+          providersTitleFirst: "prijaviš se lahko tudi z"),
     );
   }
 }

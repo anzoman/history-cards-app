@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
+import 'package:history_cards_app/globals.dart' as globals;
 import 'package:history_cards_app/models/Question.dart';
 import 'package:history_cards_app/models/Quiz.dart';
 import 'package:history_cards_app/models/UserQuestion.dart';
 import 'package:history_cards_app/models/UserQuiz.dart';
 import 'package:survey_kit/survey_kit.dart';
-import 'package:history_cards_app/globals.dart' as globals;
 
 import 'navigation_home_screen.dart';
 

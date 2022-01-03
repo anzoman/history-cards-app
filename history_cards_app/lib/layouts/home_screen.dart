@@ -232,10 +232,25 @@ class HomeListView extends StatelessWidget {
                 child: Stack(
                   alignment: AlignmentDirectional.center,
                   children: <Widget>[
-                    Image.asset(
-                      listData.imagePath,
-                      fit: BoxFit.cover,
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      decoration: BoxDecoration(
+                        color: Color(0xffffffff),
+                        image: DecorationImage(
+                          image: AssetImage(listData.imagePath),
+                        ),
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                     ),
+                    Container(
+                        padding: EdgeInsets.only(top: 50),
+                        child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: new Text(listData.title, style: TextStyle(fontSize: 20.0)))),
                     Material(
                       color: Colors.transparent,
                       child: InkWell(

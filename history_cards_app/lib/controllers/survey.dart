@@ -26,16 +26,6 @@ class Survey {
     });
   }
 
-  void addSingleChoiceAnswerFormatStep(Question question, List<TextChoice> textChoices) {
-    addImageStep(question);
-    jsonSurveySteps.add({
-      "type": "question",
-      "title": question.question,
-      "buttonText": "Naprej",
-      "answerFormat": {"type": "singleChoice", "textChoices": textChoices}
-    });
-  }
-
   void addTextAnswerFormatStep(Question question) {
     addImageStep(question);
     jsonSurveySteps.add({
@@ -43,6 +33,16 @@ class Survey {
       "title": question.question,
       "buttonText": "Naprej",
       "answerFormat": {"type": "text"}
+    });
+  }
+
+  void addSingleChoiceAnswerFormatStep(Question question, List<TextChoice> textChoices) {
+    addImageStep(question);
+    jsonSurveySteps.add({
+      "type": "question",
+      "title": question.question,
+      "buttonText": "Naprej",
+      "answerFormat": {"type": "singleChoice", "textChoices": textChoices}
     });
   }
 
@@ -82,12 +82,16 @@ class Survey {
                 validationRegEx: "^(?!\s*\$).+",
               ),
             ));
-          } else if (jsonStep['answerFormat']['type'] == "text") {
+          } else if (jsonStep['answerFormat']['type'] == "singleChoice") {
+            List<TextChoice> textChoices = [];
+            for (Map choice in jsonStep['answerFormat']['textChoices']) {
+              textChoices.add(TextChoice.fromJson(choice));
+            }
             surveySteps.add(QuestionStep(
               title: jsonStep['title'],
               buttonText: jsonStep['buttonText'],
               answerFormat: SingleChoiceAnswerFormat(
-                textChoices: jsonStep['answerFormat']['textChoices'],
+                textChoices: textChoices,
               ),
             ));
           } else {

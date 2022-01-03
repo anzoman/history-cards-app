@@ -37,7 +37,7 @@ class DataStorage {
     uuid = Uuid();
   }
 
-  Future<User> login(String email, String password) async {
+  Future<User> login(String email) async {
     try {
       return await getUserByEmail(email);
     } catch (error) {
@@ -406,5 +406,33 @@ class DataStorage {
     } catch (error) {
       throw Exception("Failed to download JSON: $error");
     }
+  }
+
+  Future<UserStats> getUserStats(User user) async {
+    QuerySnapshot solvedQuestionsQuerySnapshot = await userQuestions.where('user_id', isEqualTo: user.id).get();
+    QuerySnapshot correctQuestionsQuerySnapshot =
+        await userQuestions.where('user_id', isEqualTo: user.id).where('correct', isEqualTo: true).get();
+    QuerySnapshot solvedQuizzesQuerySnapshot =
+        await userQuizzes.where('user_id', isEqualTo: user.id).where('solved', isEqualTo: true).get();
+    QuerySnapshot availableQuizzesQuerySnapshot = await quizzes.where('user_id', isNotEqualTo: user.id).get();
+    QuerySnapshot createdQuizzesQuerySnapshot = await quizzes.where('user_id', isEqualTo: user.id).get();
+    QuerySnapshot allQuizzesQuerySnapshot = await quizzes.get();
+    QuerySnapshot allQuestionsQuerySnapshot = await questions.get();
+    QuerySnapshot allUsersQuerySnapshot = await users.get();
+
+    int points = user.points;
+    int solvedQuestions = solvedQuestionsQuerySnapshot.size;
+    ;
+    int correctQuestions = correctQuestionsQuerySnapshot.size;
+    ;
+    int solvedQuizzes = solvedQuizzesQuerySnapshot.size;
+    int availableQuizzes = availableQuizzesQuerySnapshot.size;
+    int createdQuizzes = availableQuizzesQuerySnapshot.size;
+    int allQuizzes = allQuizzesQuerySnapshot.size;
+    int allQuestions = allQuestionsQuerySnapshot.size;
+    int allUsers = allUsersQuerySnapshot.size;
+
+    return UserStats(points, solvedQuestions, correctQuestions, solvedQuizzes, availableQuizzes, createdQuizzes,
+        allQuizzes, allQuestions, allUsers);
   }
 }
